@@ -1,0 +1,128 @@
+Microsoft Windows [versão 10.0.19045.4412]
+(c) Microsoft Corporation. Todos os direitos reservados.
+
+C:\Users\lab1-aluno>cd ..
+
+C:\Users>cd ..
+
+C:\>cd xampp
+
+C:\xampp>cd mysql
+
+C:\xampp\mysql>cd bin
+
+C:\xampp\mysql\bin>mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 61
+Server version: 10.4.28-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use biblioteca;
+Database changed
+MariaDB [biblioteca]> create table livro (
+    -> idlivro int primary key auto_increment,
+    -> titulo varchar(255),
+    -> qtdepaginas int,
+    -> genero varchar(255),
+    -> autor varchar(255));
+Query OK, 0 rows affected (0.014 sec)
+
+MariaDB [biblioteca]> show tables;
++----------------------+
+| Tables_in_biblioteca |
++----------------------+
+| livro                |
++----------------------+
+1 row in set (0.000 sec)
+
+MariaDB [biblioteca]> describe;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+MariaDB [biblioteca]> describe;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+MariaDB [biblioteca]> drop database escola;
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [biblioteca]> describe biblioteca;
+ERROR 1146 (42S02): Table 'biblioteca.biblioteca' doesn't exist
+MariaDB [biblioteca]> describe biblioteca
+    -> ;
+ERROR 1146 (42S02): Table 'biblioteca.biblioteca' doesn't exist
+MariaDB [biblioteca]> show tables;
++----------------------+
+| Tables_in_biblioteca |
++----------------------+
+| livro                |
++----------------------+
+1 row in set (0.000 sec)
+
+MariaDB [biblioteca]> describe animal
+    -> ;
+ERROR 1146 (42S02): Table 'biblioteca.animal' doesn't exist
+MariaDB [biblioteca]> use veterinaria;
+Database changed
+MariaDB [veterinaria]> describe animal
+    -> ;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| idanimal | int(11)      | NO   | PRI | NULL    | auto_increment |
+| nome     | varchar(255) | YES  |     | NULL    |                |
+| raca     | varchar(255) | YES  |     | NULL    |                |
+| peso     | decimal(7,2) | YES  |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+4 rows in set (0.016 sec)
+
+MariaDB [veterinaria]> rename table animal to animais;
+Query OK, 0 rows affected (0.011 sec)
+
+MariaDB [veterinaria]> show tables
+    -> ;
++-----------------------+
+| Tables_in_veterinaria |
++-----------------------+
+| animais               |
++-----------------------+
+1 row in set (0.000 sec)
+
+MariaDB [veterinaria]> alter table animais add column datanascimento datetime;
+Query OK, 0 rows affected (0.012 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [veterinaria]> describe animais
+    -> ;
++----------------+--------------+------+-----+---------+----------------+
+| Field          | Type         | Null | Key | Default | Extra          |
++----------------+--------------+------+-----+---------+----------------+
+| idanimal       | int(11)      | NO   | PRI | NULL    | auto_increment |
+| nome           | varchar(255) | YES  |     | NULL    |                |
+| raca           | varchar(255) | YES  |     | NULL    |                |
+| peso           | decimal(7,2) | YES  |     | NULL    |                |
+| datanascimento | datetime     | YES  |     | NULL    |                |
++----------------+--------------+------+-----+---------+----------------+
+5 rows in set (0.013 sec)
+
+MariaDB [veterinaria]> alter table animais drop column peso;
+Query OK, 0 rows affected (0.012 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [veterinaria]> describe animais;
++----------------+--------------+------+-----+---------+----------------+
+| Field          | Type         | Null | Key | Default | Extra          |
++----------------+--------------+------+-----+---------+----------------+
+| idanimal       | int(11)      | NO   | PRI | NULL    | auto_increment |
+| nome           | varchar(255) | YES  |     | NULL    |                |
+| raca           | varchar(255) | YES  |     | NULL    |                |
+| datanascimento | datetime     | YES  |     | NULL    |                |
++----------------+--------------+------+-----+---------+----------------+
+4 rows in set (0.011 sec)
+
+MariaDB [veterinaria]> drop table animais;
+Query OK, 0 rows affected (0.004 sec)
+
+MariaDB [veterinaria]> show tables;
+Empty set (0.000 sec)
+
+MariaDB [veterinaria]>
