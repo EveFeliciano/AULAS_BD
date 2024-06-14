@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 07/06/2024 às 17:44
+-- Tempo de geração: 14/06/2024 às 17:42
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -29,10 +29,20 @@ USE `prodvinho`;
 -- Estrutura para tabela `casta`
 --
 
+DROP TABLE IF EXISTS `casta`;
 CREATE TABLE `casta` (
   `codCasta` int(11) NOT NULL,
   `casta` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `casta`
+--
+
+INSERT INTO `casta` (`codCasta`, `casta`) VALUES
+(1, 'Touriga Nacional'),
+(2, 'Tinta Roriz'),
+(3, 'Tinta Barroca');
 
 -- --------------------------------------------------------
 
@@ -40,6 +50,7 @@ CREATE TABLE `casta` (
 -- Estrutura para tabela `casta_vinho`
 --
 
+DROP TABLE IF EXISTS `casta_vinho`;
 CREATE TABLE `casta_vinho` (
   `codVinho` int(11) DEFAULT NULL,
   `codCasta` int(11) DEFAULT NULL
@@ -51,6 +62,7 @@ CREATE TABLE `casta_vinho` (
 -- Estrutura para tabela `produtor`
 --
 
+DROP TABLE IF EXISTS `produtor`;
 CREATE TABLE `produtor` (
   `produtorid` int(11) NOT NULL,
   `nomeProd` varchar(50) DEFAULT NULL,
@@ -60,12 +72,23 @@ CREATE TABLE `produtor` (
   `codregiao` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Despejando dados para a tabela `produtor`
+--
+
+INSERT INTO `produtor` (`produtorid`, `nomeProd`, `moradaProd`, `telefone`, `email`, `codregiao`) VALUES
+(1, 'Qt. Vallado', 'Régua', '254323147', 'vallado@mail.telepac.pt', 1),
+(3, 'Finagra', 'Reguengos', '266509270', 'esporao@esporao.com', 2),
+(4, 'Dão Sul', NULL, NULL, NULL, 3),
+(6, 'Kolheita Ideias', NULL, NULL, NULL, 1);
+
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `regiao`
 --
 
+DROP TABLE IF EXISTS `regiao`;
 CREATE TABLE `regiao` (
   `idregiao` int(11) NOT NULL,
   `descriregiao` varchar(50) NOT NULL
@@ -89,6 +112,7 @@ INSERT INTO `regiao` (`idregiao`, `descriregiao`) VALUES
 -- Estrutura para tabela `vinho`
 --
 
+DROP TABLE IF EXISTS `vinho`;
 CREATE TABLE `vinho` (
   `vinhoId` int(11) NOT NULL,
   `nomeVinho` varchar(30) DEFAULT NULL,
@@ -98,6 +122,14 @@ CREATE TABLE `vinho` (
   `preco` decimal(7,2) DEFAULT NULL,
   `codProdutor` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `vinho`
+--
+
+INSERT INTO `vinho` (`vinhoId`, `nomeVinho`, `ano_vinho`, `cor`, `grau`, `preco`, `codProdutor`) VALUES
+(1, 'Esporão Reserva', 2004, 'Tinto', 14.50, 18.50, 3),
+(2, 'Quinta do Vallado', 2004, 'Tinto', 14.00, 6.50, 1);
 
 --
 -- Índices para tabelas despejadas
@@ -145,13 +177,13 @@ ALTER TABLE `vinho`
 -- AUTO_INCREMENT de tabela `casta`
 --
 ALTER TABLE `casta`
-  MODIFY `codCasta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `codCasta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `produtor`
 --
 ALTER TABLE `produtor`
-  MODIFY `produtorid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `produtorid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `regiao`
@@ -163,7 +195,7 @@ ALTER TABLE `regiao`
 -- AUTO_INCREMENT de tabela `vinho`
 --
 ALTER TABLE `vinho`
-  MODIFY `vinhoId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `vinhoId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restrições para tabelas despejadas
